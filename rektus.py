@@ -13,16 +13,16 @@ def exist():
     ever += 50
     return society
 def average():
-    a = 0
-    b = 0
-    c = 0
-    d = 0
-    f = 0
-    m = 0
-    x = len(society)
-    avgn = 0
-    avht = 0
-    avhl = 0
+    a = 0   #counter for average geneation
+    b = 0   #counter for female to male ratio
+    c = 0   #counter for average height
+    d = 0   #counter for average health
+    f = 0   #number of females (used to determine ftm ratio)
+    m = 0   #number of males (used to determine ftm ratio)
+    x = len(society) 
+    avgn = 0    #average gen temp value
+    avht = 0    #average height temp value
+    avhl = 0    #average health temp value
     while a < x:
         avgn += society[a].special[0]
         a += 1
@@ -34,6 +34,10 @@ def average():
         else:
             f += 1
             b += 1
+        g = f + m
+        g = f / g
+        fr = g * 100        #female ratio
+        mr = (1 - g) * 100  #male ratio
     while c < x:
         avht += society[c].special[2]
         c += 1
@@ -43,10 +47,10 @@ def average():
         avhl += society[d].special[3]
         d += 1
     avhl = avhl / x
-    print("Average Gen: ", round(avgn), ", height:", round(avht), ", health: ", round(avhl), "f:m ratio: ", f, ":", m, ".", ever)
+    print("Average Gen: ", round(avgn), ", height:", round(avht), ", health: ", round(avhl), "f:m ratio: ", round(fr, 2), ":", round(mr, 2), ".", ever)
 def die():
     a = 0
-    lifetime = randint(1, 30)
+    lifetime = randint(1, 310)
     while(a < len(society)): 
             if((society[a].special[3] - lifetime) > 0):
                 society[a].special[3] -= lifetime
