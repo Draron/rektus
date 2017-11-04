@@ -10,15 +10,13 @@ def exist():
     while i > 0:
         print(society[i].special)
         i -= 1
-    global ever
-    ever += 50
     return society
 
 def average():
-    #a = 0   #counter for average geneation
-    #b = 0   #counter for female to male ratio
-    #c = 0   #counter for average height
-    #d = 0   #counter for average health
+    #a = 0   #counter for average geneation     abbreviated as of 03/11/17, variable name still in use
+    #b = 0   #counter for female to male ratio  abbreviated as of 03/11/17, variable name still in use
+    #c = 0   #counter for average height        abbreviated as of 03/11/17, variable name still in use
+    #d = 0   #counter for average health        abbreviated as of 03/11/17, variable name still in use
     x = len(society)
     f = 0   #number of females (used to determine ftm ratio)
     m = 0   #number of males (used to determine ftm ratio)
@@ -27,33 +25,30 @@ def average():
     avhl = 0    #average health temp value
     for a in range(0, x):
         avgn += society[a].special[0]
-        #a += 1
     avgn = avgn / x
+
     for b in range(0, x):
         if(society[b].special[1] == 1):
             m += 1
-            #b += 1
         else:
             f += 1
-            #b += 1
         g = f + m
         g = f / g
         fr = g * 100        #female ratio
         mr = (1 - g) * 100  #male ratio
+
     for c in range(0, x):
         avht += society[c].special[2]
-        #c += 1
     avht = avht / x
     
     for d in range(0, x):
         avhl += society[d].special[3]
-        #d += 1
     avhl = avhl / x
-    print("Average Gen: ", round(avgn), ", height:", round(avht), ", health: ", round(avhl), "f:m ratio: ", round(fr, 2), ":", round(mr, 2), ".", ever, f + m )
-
+    print("Average Gen: ", round(avgn), "| height:", round(avht), "| health: ", round(avhl), "| Entire population ever:", Person.all_ever(), "| Population currently", m + f, "| f:m ratio: ", round(fr, 2), ":", round(mr, 2)) #, "      ", end='\r', flush=True)
+    
 def die():
     a = 0
-    lifetime = randint(1, 350)
+    lifetime = randint(1, 310)
     while(a < len(society)): 
             if((society[a].special[3] - lifetime) > 0):
                 society[a].special[3] -= lifetime
@@ -83,25 +78,21 @@ def date():
         a += 2
     return(pairs)
 
-def reproduce(pairs):#, society):
-    #society = society
+def reproduce(pairs):
     a = 0
     while(a < len(pairs)):
         if(society[pairs[a][0]].special[1] is not society[pairs[a][1]].special[1]):
             if(society[pairs[a][0]].special[0] == society[pairs[a][1]].special[0]):            
                 society.append(Person(society[pairs[a][0]].special[2], society[pairs[a][1]].special[2], society[pairs[a][0]].special[0] + 1))
-                global ever
-                ever += 1
         else:
             pass
         a+=1
     return(society)
 
-ever = 0
 society = exist()
 average()   
 while True:     
     die()
     couplets = date()
-    society = reproduce(couplets)#, society)   
+    society = reproduce(couplets) 
     average()
