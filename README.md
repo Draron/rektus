@@ -10,11 +10,15 @@ code correction, re-evaluate syntax, esp. while, (gauss-normalization in some ra
 rework overall lifecycle including inheritable health and more realistic reproduction/dating behavior<br>
 <br>
 rektus.py: <br>
-average(): ftm ratio as real ratio, current population counter, height for both sexes, max gen, (min/max height?)<br>
+average(): height for both sexes, max gen, (min/max height?)<br>
 date(): re-evaluate for better efficiency, esp. for larger population groups and/or make more realistic using different parameters like wealth, health, power, age, intelligence<br>
 <br>
 person.py: <br>
 make health inheritable, see general changes<br>
+<br>
+# done:
+rektus.py: <br>
+average(): ftm ratio as real ratio, current population counter<br>
 <br>
 # Ideas for future releases:
 add more inheritable parameters like eye/hair colour <br>
