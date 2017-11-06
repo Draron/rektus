@@ -21,6 +21,7 @@ rektus.py: <br>
 average(): ftm ratio as real ratio, current population counter<br>
 <br>
 # Ideas for future releases:
+conclusion of a generation, average() per generation instead of iteration, -->average(gen)?
 add more inheritable parameters like eye/hair colour <br>
 add random events (diseases, catastrophes, wars, religion(how?), donald trump, etc) <br>
 add a bunch of commands to manipulate parameters while in simulation (settings file?) <br>
