@@ -5,9 +5,9 @@ An algorithm simulating changes in population and such.
 working, not stable
 
 # TODO:
-fix error for population <2 / implement a more efficient reproduction system that prevents dieing out <br>
-code correction, re-evaluate syntax, esp. while, (gauss-normalization in some random parameters?) <br>
-rework overall lifecycle including inheritable health and more realistic reproduction/dating behavior<br>
+~~fix error for population <2~~ implement a more efficient reproduction system that prevents dieing out <br>
+~~code correction, re-evaluate syntax, esp. while, (gauss-normalization in some random parameters?)~~<br>
+
 <br>
 rektus.py: <br>
 average(): height for both sexes, max gen, (min/max height?)<br>
@@ -22,6 +22,7 @@ rektus.py: <br>
 average(): ftm ratio as real ratio, current population counter<br>
 <br>
 # Ideas for future releases:
+rework overall lifecycle including inheritable health and more realistic reproduction/dating behavior<br>
 conclusion of a generation, average() per generation instead of iteration, -->average(gen)?<br>
 ->new class generation?<br>
 add more inheritable parameters like eye/hair colour <br>
