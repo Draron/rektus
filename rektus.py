@@ -4,9 +4,9 @@ from random import randint
 from person import *
 
 def exist():
-    society = [Person(gdv_stht_mp, gdv_stht_fp, 0)]
+    society = []
     i = 0
-    for i in range(0, gdv_stp - 1):
+    for i in range(0, gdv_stp):
         society += [Person(gdv_stht_mp, gdv_stht_fp, 0)]
     return society
 
@@ -115,6 +115,10 @@ def reproduce(pairs):
 
 def execution_parameters():
     global gdv_stp
+    global gdv_hlmin
+    global gdv_hlmax
+    global gdv_stht_fp
+    global gdv_stht_mp
     cnt = True
     if(len(sys.argv) > 1):
         argslst = ""
@@ -122,7 +126,7 @@ def execution_parameters():
             argslst += sys.argv[i] + ", "
         if("cpar" in sys.argv):
             print("Custom parameters (leave blank for default)")
-            sys.stdout.write("Start Population(default: 50, value: int 0...n)?")
+            sys.stdout.write("Start Population(default: 50, value: int 0-n)?")
             stpp = input()
             try:
                 stpp = int(stpp)
@@ -131,8 +135,47 @@ def execution_parameters():
                 elif(stpp > 0):
                     gdv_stp = stpp
             except:
-                print("'", stpp, "' ist keine gültige Eingabe, Standardparameer wird benutzt")
-            
+                print("'", stpp, "'is not a valid parameter, default will be used")
+            sys.stdout.write("Average height startfemales (default: 1670, value: int 0-n, recommended 1500-2000)?")
+            stpp = input()
+            try:
+                stpp = int(stpp)
+                if(stpp == ''):
+                    gdv_stht_fp = 1670
+                elif(stpp > 0):
+                    gdv_stht_fp = stpp
+            except:
+                print("'", stpp, "'is not a valid parameter, default will be used")
+            sys.stdout.write("Average height startmales (default: 1780, value: int 0-n, recommended 1500-2000)?")
+            stpp = input()
+            try:
+                stpp = int(stpp)
+                if(stpp == ''):
+                    gdv_stht_mp = 1780
+                elif(stpp > 0):
+                    gdv_stht_mp = stpp
+            except:
+                print("'", stpp, "'is not a valid parameter, default will be used")
+            sys.stdout.write("Minimal health loss (default: 1, value: int 1-n, recommended 1-n<max health loss)?")
+            stpp = input()
+            try:
+                stpp = int(stpp)
+                if(stpp == ''):
+                    gdv_hlmin = 1780
+                elif(stpp > 0):
+                    gdv_hlmin = stpp
+            except:
+                print("'", stpp, "'is not a valid parameter, default will be used")
+            sys.stdout.write("Maximal health loss (default: 310, value: int 1-n, recommended 300-320, consider max health!)?")
+            stpp = input()
+            try:
+                stpp = int(stpp)
+                if(stpp == ''):
+                    gdv_hlmax = 1780
+                elif(stpp > 0):
+                    gdv_hlmax = stpp
+            except:
+                print("'", stpp, "'is not a valid parameter, default will be used")
         sys.stdout.write("rektus will be executed with the following parameters: " + argslst + "continue? [Y/n]")
         choice = input().lower()
         if(choice == '' or choice == 'y'):
@@ -167,4 +210,4 @@ while cnt:
     average()
     pointdc = time.perf_counter()
     if(len(sys.argv) > 1 and "perf" in sys.argv):
-        print("runtime overall:", round(pointdc - pointao, 5), "die:", round(pointac - pointao, 5), "date:", round(pointbc - pointbo, 5), "reproduce:", round(pointcc - pointco, 5), "average:", round(pointdc - pointdo, 5), "for", len(society), "elements in society[]")
+        print("runtime overall:", round(pointdc - pointao, 5), "die:", round(pointac - pointao, 5), "dating:", round(pointbc - pointbo, 5), "reproduce:", round(pointcc - pointco, 5), "average:", round(pointdc - pointdo, 5), "for", len(society), "elements in society[]")
