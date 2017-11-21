@@ -12,23 +12,26 @@ def exist():
 
 def average():
     #a = 0   #counter for average geneation     abbreviated as of 03/11/17, variable name still in use
-    #b = 0   #counter for female to male ratio  abbreviated as of 03/11/17, variable name still in use
-    #c = 0   #counter for average height        abbreviated as of 03/11/17, variable name still in use
-    #d = 0   #counter for average health        abbreviated as of 03/11/17, variable name still in use
+    #b = 0   #counter for female to male ratio  abbreviated as of 07/11/17
+    #c = 0   #counter for average height        abbreviated as of 07/11/17
+    #d = 0   #counter for average health        abbreviated as of 07/11/17
+    global maxhte
+    global minhte
     maxgen = society[1].special[0]
     mingen = society[1].special[0]
-    maxhtf = 0
-    maxhtm = 0
-    minhtf = 9999
-    minhtm = 9999
+    maxhtf = 0                      #max height female
+    maxhtm = 0                      #max height male
+    minhtf = 9999                   #min height female
+    minhtm = 9999                   #min height male
     x = len(society)
-    f = 0       #number of females (used to determine ftm ratio, also height calculations)
-    m = 0       #number of males (used to determine ftm ratio, also height calculations)
-    avgn = 0    #average gen temp value
-    avht = 0    #average height temp value
-    avhtm = 0   #average male height temp value
-    avhtf = 0   #average female height temp value
-    avhl = 0    #average health temp value
+    f = 0           #number of females (used to determine ftm ratio, also height calculations)
+    m = 0           #number of males (used to determine ftm ratio, also height calculations)
+    avgn = 0        #average gen temp value
+    avht = 0        #average height temp value
+    avhtm = 0       #average male height temp value
+    avhtf = 0       #average female height temp value
+    avhl = 0        #average health temp value
+    
     for a in range(0, x):
         avgn += society[a].special[0]
         avht += society[a].special[2]
@@ -61,14 +64,26 @@ def average():
 
     avgn = avgn / x
     avhtm = avhtm / m
+    avhtml.append(avhtm)
     avhtf = avhtf / f
+    avhtfl.append(avhtf)
     avht = avht / x
-    avhl = avhl / x    
+    avhtl.append(avht)
+    avhl = avhl / x
+
+    if(minhte > minhtm):
+        minhte = minhtm
+    elif(minhte > minhtf):
+        minhte = minhtf
+    elif(maxhte < maxhtm):
+        maxhte = maxhtm
+    elif(maxhte < maxhtf):
+        maxhte = maxhtf
 
     if(len(sys.argv) >= 1 and not "noaverage" in sys.argv):
         print("gen min/avg/max:", mingen, "/", round(avgn), "/", maxgen, " | height:", round(avht), " | health:", round(avhl), " | Population ever:", Person.all_ever(), " | currently:", m + f, " | f:m ratio: ", round(fr, 2), ":", round(mr, 2), sep='' ) 
     if(len(sys.argv) > 1 and "htdt" in sys.argv):
-        print("male height min/max/avg:", round(minhtm), round(maxhtm), round(avhtm), "female height min/max/avg:", round(minhtf), round(maxhtf), round(avhtf), "overall average:", round(avht))
+        print("male height min/max/avg:", round(minhtm), round(maxhtm), round(avhtm), "female height min/max/avg:", round(minhtf), round(maxhtf), round(avhtf), "overall average:", round(avht), "highest ever:", round(maxhte), "smallest ever:", round(minhte))
     
 def die():
     a = 0
@@ -190,9 +205,9 @@ gdv_hlmax = 310                     #(h)ealth(l)oss maximum
 gdv_stp = 50                        #(st)art(p)opulation
 gdv_stht_fp = 1670                  #(st)art(h)eigh(t)_(f)emale(p)arent
 gdv_stht_mp = 1780                  #(st)art(h)eigh(t)_(m)ale(p)arent
-
 cnt = execution_parameters()        #cnt is used to determine if the user is happy with the parameters of execution
-
+maxhte = 0
+minhte = 9999
 if cnt:
     society = exist()
     average()   
